@@ -18,6 +18,7 @@ WVStable <- with(WVS, data.frame(wvsccode, country))
 WVStable <- WVStable[!duplicated(WVS[, "wvsccode"]), ]
 WVStable$ccode <-  countrycode(WVStable$country, "country.name", "cown")
 
+# countrycode still struggles with Serbia after Yugoslavia. Let's fix that manually.
 WVStable$ccode[WVStable$country == "Serbia"] <- 345
 WVStable$ccode[WVStable$country == "Serbia and Montenegro"] <- 345
 
