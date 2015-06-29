@@ -7,7 +7,7 @@ library(countrycode)
 # See accompanying blog post at svmiller.com for more information.
 
 WVS <- read.dta("~/Dropbox/data/wvs/WVS_Longitudinal_1981_2014_stata_v2015_04_18.dta", convert.factors = FALSE) # Integrated, 1981-2014
-WVSccodes <- read.csv("~/Dropbox/data/wvs/wvsccodes.csv")
+WVSccodes <- read.csv("~/Dropbox/data/wvs/wvsccodes-raw.csv")
 
 WVS$wvsccode <- WVS$S003
 WVS <- WVS[order(WVS$wvsccode), ]
@@ -21,7 +21,7 @@ WVStable$ccode <-  countrycode(WVStable$country, "country.name", "cown")
 WVStable$ccode[WVStable$country == "Serbia"] <- 345
 WVStable$ccode[WVStable$country == "Serbia and Montenegro"] <- 345
 
-write.table(WVStable,file="wvstable.csv",sep=",",row.names=F,na="")
+write.table(WVStable,file="wvs-cow-ccodes-table.csv",sep=",",row.names=F,na="")
 
 # Note: you're on your own regarding Puerto Rico, Palestine, and Hong Kong.
 # If, for your own reason, you want to keep those, I'd recommend 6 (Puerto Rico), 667 (Palestine), and 714 (Hong Kong).
